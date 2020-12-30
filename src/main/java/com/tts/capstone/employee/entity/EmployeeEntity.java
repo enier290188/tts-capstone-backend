@@ -4,8 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,12 +37,12 @@ public class EmployeeEntity {
     @Column(name = "description", nullable = false, length = 30)
     private String description;
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = true, updatable = false)
     private Instant createdAt;
 
-    @LastModifiedDate
-    @Column(name = "updated_at", nullable = false, updatable = true)
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = true, updatable = true)
     private Instant updatedAt;
 
     public EmployeeEntity(String firstName, String lastName, String description) {

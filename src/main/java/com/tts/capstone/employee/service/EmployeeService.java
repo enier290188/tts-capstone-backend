@@ -26,4 +26,24 @@ public class EmployeeService {
             throw new EmployeeNotFoundException(id);
         }
     }
+
+    public EmployeeEntity create(EmployeeEntity employeeEntity) {
+        return employeeRepository.save(employeeEntity);
+    }
+
+    public EmployeeEntity updateById(Long id, EmployeeEntity employeeEntity) {
+        Optional<EmployeeEntity> employeeEntityData = findById(id);
+        if (employeeEntityData.isPresent()) {
+            employeeEntity.setId(employeeEntityData.get().getId());
+            return employeeRepository.save(employeeEntity);
+        }
+        return employeeEntity;
+    }
+
+    public void deleteById(Long id) {
+        Optional<EmployeeEntity> employeeEntityData = findById(id);
+        if (employeeEntityData.isPresent()) {
+            employeeRepository.deleteById(id);
+        }
+    }
 }
