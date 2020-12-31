@@ -6,7 +6,6 @@ import com.tts.capstone.weather.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class WeatherController {
 
     @GetMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<ZipCode>> getList(Model model) {
+    public ResponseEntity<List<ZipCode>> getList() {
         return ResponseEntity.ok().body(weatherService.getUp10MostRecentSearches());
     }
 
